@@ -1,25 +1,14 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-var upperCaseLetters=["A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", 
-"S", "T", "U", "V", "W", "X", "Y", "Z"]
-
-var lowerCaseLetters=["a","b", "e", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", 
-"s", "t", "u", "v", "w", "x", "y", "z"]
-
-var passwordNumbers=[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-
-var passwordSpecialCharacters= ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ".", ",", "[", "]"]
-
-var passwordArrayAll=["A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", 
-"S", "T", "U", "V", "W", "X", "Y", "Z","a","b", "e", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", 
-"s", "t", "u", "v", "w", "x", "y", "z",1, 2, 3, 4, 5, 6, 7, 8, 9, 0,"!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ".", ",", "[", "]"]
-
+var passUpperCase ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var passLowerCase ='abcdefghijklmnopqrstuvwxyz';
+var passNumbers ='1234567890';
+var passSpecialCharacters='!@#$%^&*()_+=/?';
 
 
 function generatePassword(){
-  
-  
+ var passwordComplete=[];
+ var active='';
   var upperCase =confirm("Do you want uppercase letters?")
   var lowerCase=confirm("Do you want lowercase letters?")
   var numbers=confirm("Do you want numbers?")
@@ -32,12 +21,31 @@ function generatePassword(){
    }
    
 console.log("Step1")
-    if(upperCase===true&&lowerCase==true&&numbers==true&&specialCharacters==true)
+    if(upperCase===true)
     {
-      passwordComplete=[];
+      active+=passUpperCase;
+    }
+    if(lowerCase===true)
+    {
+        active+=passLowerCase;
+    }
+    if(specialCharacters===true)
+    {
+        active+=passSpecialCharacters;
+    }
+    if(numbers===true)
+    {
+        active+=passNumbers;
+    }
+    if(upperCase===false&&lowerCase===false&&numbers===false&&specialCharacters===false)
+    {
+        alert("Must include one of the following: Uppercase Letter, Lowercase Letter, Number, or Special Character. Please try again.")
+    }
+      console.log(active)
+
       for(i=0; i<lengthOfPassword; i++)
       {
-        var selector=passwordArrayAll[Math.floor(Math.random()*passwordArrayAll.length)];
+        var selector=active[Math.floor(Math.random()*active.length)];
         console.log(selector)
         passwordComplete.push(selector)
         console.log(passwordComplete)
@@ -46,35 +54,19 @@ console.log("Step1")
      console.log(password)
      return password;
     }
+    
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-// Write password to the #password input
+    // Write password to the #password input
 function writePassword() {
     
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  
+  }
+  
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
