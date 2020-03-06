@@ -1,5 +1,6 @@
 # passwordGenerator
 A password generator 
+link: https://bpolo15.github.io/passwordGenerator/
 Pseudocode:
 1. Clicking the "generate password" button will alert the program to start prompting for password criteria. 
 2. There will be an alert asking if I want the following:
